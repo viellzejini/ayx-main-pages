@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 – 再访 · 收藏 · 持续关注</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(145deg, #fbe9d7 0%, #f7d4b5 50%, #f0c094 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem 1.5rem;
+        }
+        .card-container {
+            max-width: 1140px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .hero-card {
+            background: #fffffffa;
+            backdrop-filter: blur(4px);
+            border-radius: 48px 48px 32px 32px;
+            box-shadow: 0 20px 40px -12px rgba(140, 80, 40, 0.25);
+            padding: 3rem 3rem 2.5rem;
+            transition: box-shadow 0.25s ease;
+        }
+        .hero-card:hover { box-shadow: 0 28px 52px -16px rgba(130, 70, 30, 0.3); }
+        .hero-tag {
+            display: inline-block;
+            background: #f2dace;
+            color: #7a4b2c;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            margin-bottom: 1.2rem;
+        }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #39281b;
+            margin-bottom: 1.2rem;
+        }
+        h1 i { font-style: normal; background: linear-gradient(135deg, #bf6f3a, #9b4e2a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-desc {
+            font-size: 1.05rem;
+            color: #4f3a2b;
+            max-width: 70%;
+            line-height: 1.65;
+            margin-bottom: 1.8rem;
+        }
+        .sentence-link {
+            font-size: 1.05rem;
+            color: #4f3a2b;
+            background: #f7ede3;
+            padding: 1rem 1.6rem;
+            border-radius: 60px;
+            display: inline-block;
+            backdrop-filter: blur(2px);
+            box-shadow: 0 4px 10px rgba(150, 90, 50, 0.06);
+        }
+        .sentence-link a {
+            color: #a7582b;
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 2px solid #dba67b;
+            transition: 0.2s;
+        }
+        .sentence-link a:hover { color: #7b3f1b; border-bottom-color: #a7582b; }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+        }
+        .info-card {
+            background: #fffffffa;
+            border-radius: 32px;
+            padding: 2rem 1.8rem 1.8rem;
+            box-shadow: 0 10px 26px -6px rgba(110, 60, 30, 0.12);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        .info-card:hover { transform: translateY(-5px); box-shadow: 0 18px 36px -10px rgba(100, 55, 25, 0.18); }
+        .card-icon {
+            font-size: 2.2rem;
+            line-height: 1;
+            margin-bottom: 0.6rem;
+            display: inline-block;
+        }
+        .info-card h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2f2219;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.02em;
+        }
+        .info-card p {
+            color: #4c3829;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            flex: 1;
+            margin-bottom: 0.3rem;
+        }
+        .info-card .small-note {
+            font-size: 0.8rem;
+            color: #8c6e57;
+            margin-top: 0.8rem;
+            border-top: 1px dashed #ebd7c5;
+            padding-top: 0.7rem;
+        }
+        .faq-mini {
+            background: #fffffffa;
+            border-radius: 32px;
+            padding: 2rem 2.5rem 2.2rem;
+            box-shadow: 0 8px 24px -8px rgba(100, 55, 25, 0.10);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .faq-mini h3 {
+            width: 100%;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #39281b;
+            margin-bottom: 0.2rem;
+        }
+        .faq-item {
+            flex: 1 1 30%;
+            min-width: 180px;
+        }
+        .faq-item strong {
+            display: block;
+            font-size: 0.9rem;
+            color: #7b4d2e;
+            margin-bottom: 0.2rem;
+        }
+        .faq-item span {
+            font-size: 0.9rem;
+            color: #4f3a2b;
+            line-height: 1.5;
+        }
+        .footer-note {
+            text-align: center;
+            color: #6b4e38;
+            font-size: 0.85rem;
+            padding: 1rem 0 0.2rem;
+            opacity: 0.7;
+        }
+        .footer-note a { color: #7b4d2e; text-decoration: underline; }
+
+        @media (max-width: 900px) {
+            .grid-cards { grid-template-columns: repeat(2, 1fr); }
+            .hero-card { padding: 2.2rem 1.8rem; }
+            h1 { font-size: 2.2rem; }
+            .hero-desc { max-width: 90%; }
+        }
+        @media (max-width: 640px) {
+            body { padding: 1.2rem; }
+            .grid-cards { grid-template-columns: 1fr; }
+            .hero-card { padding: 2rem 1.5rem; border-radius: 32px; }
+            h1 { font-size: 1.9rem; }
+            .hero-desc { max-width: 100%; font-size: 0.95rem; }
+            .sentence-link { font-size: 0.95rem; padding: 0.8rem 1.2rem; }
+            .faq-mini { padding: 1.5rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="card-container">
+
+    <!-- 主视觉卡片：再访 · 收藏 -->
+    <div class="hero-card">
+        <span class="hero-tag">✦ 持续关注</span>
+        <h1>再次回到 <i>爱游戏</i> · 收藏此刻</h1>
+        <p class="hero-desc">
+            信息密度更高，节奏更明确。每一次访问都不是偶然 —— 把熟悉的平台加入收藏夹，让关注成为一种习惯。
+        </p>
+        <div class="sentence-link">
+            <span>如果您尚未收藏，不妨将 </span><a href="https://ayx-main-sports.com">爱游戏</a><span> 添加至书签栏，方便随时回来。</span>
+        </div>
+    </div>
+
+    <!-- 用途卡片：三个维度 -->
+    <div class="grid-cards">
+        <div class="info-card">
+            <div class="card-icon">📋</div>
+            <h2>快速再访</h2>
+            <p>通过收藏夹或直接输入域名，数秒内即可回到熟悉界面。无需重复搜索，减少中途打扰。适合每日快速浏览或赛前确认。</p>
+            <div class="small-note">设置首页或书签 · 稳定入口</div>
+        </div>
+        <div class="info-card">
+            <div class="card-icon">🧩</div>
+            <h2>用途延伸</h2>
+            <p>从资讯查阅到个人关注列表管理，<a href="https://ayx-main-sports.com" style="color:#a7582b; font-weight:600; text-decoration:none; border-bottom:1px solid #dba67b;">爱游戏</a> 提供多场景支持。PC 与移动端布局自适应，收藏后跨设备同步访问。</p>
+            <div class="small-note">资讯 · 数据 · 个性化</div>
+        </div>
+        <div class="info-card">
+            <div class="card-icon">👥</div>
+            <h2>适合人群</h2>
+            <p>日常信息获取者、希望保持关注但不愿被推送打扰的用户、习惯用收藏夹管理网络入口的群体。简洁克制，不制造多余压力。</p>
+            <div class="small-note">低干扰 · 高可控</div>
+        </div>
+    </div>
+
+    <!-- 自然链接段落 + FAQ 摘要 -->
+    <div class="faq-mini">
+        <h3>📌 关于再访与收藏 · 简短摘要</h3>
+        <div class="faq-item">
+            <strong>为什么建议收藏？</strong>
+            <span>直接访问 <a href="https://ayx-main-sports.com" style="color:#a7582b; font-weight:600; text-decoration:none; border-bottom:1px solid #dba67b;">爱游戏</a> 并加入书签，可省去中间跳转步骤，每次打开都是最新内容。</span>
+        </div>
+        <div class="faq-item">
+            <strong>如何保持持续关注？</strong>
+            <span>无需频繁刷新，收藏后定期回访即可。页面结构稳定，信息呈现直接，适合作为固定信息节点。</span>
+        </div>
+        <div class="faq-item">
+            <strong>内容是否频繁变动？</strong>
+            <span>主体框架长期保持，数据模块按需更新。关注者可通过收藏夹随时检查最新状态，不必依赖推送。</span>
+        </div>
+    </div>
+
+    <!-- 轻提示行（自然指向） -->
+    <div style="background: #fffffffa; border-radius: 60px; padding: 0.8rem 2rem; text-align: center; box-shadow: 0 4px 12px rgba(100,55,25,0.06);">
+        <span style="color: #4f3a2b; font-size: 0.95rem;">再次访问 · 收藏 · 持续关注 —— 以 <a href="https://ayx-main-sports.com" style="color:#a7582b; font-weight:600; text-decoration:none; border-bottom:1px solid #c6875a;">爱游戏</a> 作为日常信息锚点，简单直接。</span>
+    </div>
+
+    <div class="footer-note">
+        <span>内容信息卡片 · 适合需要稳定入口的浏览习惯</span>
+    </div>
+</div>
+</body>
+</html>
